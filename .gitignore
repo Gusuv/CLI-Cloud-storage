@@ -1,0 +1,40 @@
+### Secrets
+.env
+.env.*
+!*.example
+
+### Logs
+logs/
+*.log
+
+### OS
+.DS_Store
+Thumbs.db
+
+### Ide
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+
+### Go build
+bin/
+*.exec
+*.exec~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+### Go modules
+/vendor/
+/dist/
+/tmp/
+/coverage.out
+
+### Docker (optional)
+/.docker/
+/docker-compose.override.yml
