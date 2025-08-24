@@ -23,6 +23,8 @@ Thumbs.db
 bin/
 *.exec
 *.exec~
+*.exe
+*.exe~
 *.dll
 *.so
 *.dylib
@@ -35,6 +37,6 @@ bin/
 /tmp/
 /coverage.out
 
-### Docker (optional)
+### Docker
 /.docker/
 /docker-compose.override.yml
