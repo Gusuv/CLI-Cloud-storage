@@ -3,10 +3,16 @@ package config
 import (
 	"context"
 	"fmt"
+	"log"
+	"path/filepath"
+	"runtime"
+
 	"github.com/heetch/confita"
 	"github.com/heetch/confita/backend/env"
 	"github.com/joho/godotenv"
 )
+
+var Cfg Config = Config{}
 
 type Config struct {
 	Db DbConfig
@@ -21,17 +27,26 @@ type DbConfig struct {
 	SSLMode  string `config:"DB_SSL"`
 }
 
-func InitConfig() (*Config, error) {
+func LoadConfig() error {
 
-	godotenv.Load(".env")
+	_, b, _, _ := runtime.Caller(0)
+
+	projectroot := filepath.Join(filepath.Dir(b), "..")
+
+	envpath := filepath.Join(projectroot, ".env")
+
+	err := godotenv.Load(envpath)
+	if err != nil {
+		return fmt.Errorf(".env not found: %w", err)
+	} else {
+		log.Println(".env loaded")
+	}
 
 	loader := confita.NewLoader(env.NewBackend())
 
-	cfg := &Config{}
-
-	if err := loader.Load(context.Background(), cfg); err != nil {
-		return nil, fmt.Errorf("load is failed: %w", err)
+	if err := loader.Load(context.Background(), &Cfg); err != nil {
+		return fmt.Errorf("load is failed: %w", err)
 	}
 
-	return cfg, nil
+	return nil
 }
