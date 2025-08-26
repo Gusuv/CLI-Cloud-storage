@@ -40,3 +40,6 @@ bin/
 ### Docker
 /.docker/
 /docker-compose.override.yml
+
+### Other
+/testing/
