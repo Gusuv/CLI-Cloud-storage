@@ -22,7 +22,7 @@ type DbConfig struct {
 	User     string `config:"DB_USER"`
 	Password string `config:"DB_PASSWORD"`
 	Host     string `config:"DB_HOST"`
-	Port     string `config:"DB_PORT"`
+	Port     int    `config:"DB_PORT"`
 	Name     string `config:"DB_NAME"`
 	SSLMode  string `config:"DB_SSL"`
 }
