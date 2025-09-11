@@ -1,7 +1,5 @@
 package domain
 
-import "cloud_storage/internal/repository"
-
 type UserRepo interface {
-	repository.UserRep
+	Register(username, passhash, email string) error
 }
