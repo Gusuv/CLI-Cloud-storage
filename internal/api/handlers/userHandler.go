@@ -31,6 +31,22 @@ func (u *UserHandler) Register(c *gin.Context) {
 
 }
 
+func (u *UserHandler) Login(c *gin.Context) {
+	var req UserReq
+
+	if err := c.ShouldBind(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Incorrect JSON"})
+	}
+
+	if err := u.service.Login(req.Username, req.Password); err != nil {
+		c.JSON(http.StatusOK, gin.H{"message": "User!"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "User logged in!"})
+
+}
+
 type UserReq struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
