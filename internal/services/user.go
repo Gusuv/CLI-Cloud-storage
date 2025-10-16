@@ -2,7 +2,7 @@ package services
 
 import (
 	"cloud_storage/internal/domain"
-	"cloud_storage/internal/sec"
+	"cloud_storage/internal/security"
 )
 
 type User struct {
@@ -15,10 +15,15 @@ func NewUser(rep domain.UserRepo) *User {
 
 func (u *User) Register(username, pass, email string) error {
 
-	passhash, err := sec.PasswordHash(pass)
+	passhash, err := security.PasswordHash(pass)
 	if err != nil {
 		return err
 	}
 
-	return u.rep.Register(username, passhash, email)
+	return u.rep.CreateUser(username, passhash, email)
+}
+
+func (u *User) Login(username, pass string) error {
+
+	return
 }
