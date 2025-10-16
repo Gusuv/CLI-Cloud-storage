@@ -17,6 +17,7 @@ func NewRouter(u *handlers.UserHandler) *gin.Engine {
 			"message": "Hello User",
 		})
 	})
+	v1.POST("/login", u.Login)
 
 	return r
 
