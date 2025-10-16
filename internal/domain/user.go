@@ -1,5 +1,7 @@
 package domain
 
 type UserRepo interface {
-	Register(username, passhash, email string) error
+	CreateUser(username, passhash, email string) error
+	CheckUser(username string) (bool, error)
+	GetUserId(username string) (int64, error)
 }
