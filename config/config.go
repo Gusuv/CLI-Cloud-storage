@@ -15,7 +15,8 @@ import (
 var Cfg Config = Config{}
 
 type Config struct {
-	Db DbConfig
+	Db    DbConfig
+	MinIo MinioConfig
 }
 
 type DbConfig struct {
@@ -25,6 +26,12 @@ type DbConfig struct {
 	Port     int    `config:"DB_PORT"`
 	Name     string `config:"DB_NAME"`
 	SSLMode  string `config:"DB_SSL"`
+}
+
+type MinioConfig struct {
+	AccessKeyID     string `config:"MINIO_ACCESS_KEY_ID"`
+	SecretAccessKey string `config:"MINIO_SECRET_ACCESS_KEY"`
+	Endpoint        string `config:"MINIO_ENDPOINT"`
 }
 
 func LoadConfig() error {
